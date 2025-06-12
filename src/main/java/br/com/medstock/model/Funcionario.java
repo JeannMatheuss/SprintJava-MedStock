@@ -1,5 +1,6 @@
 package br.com.medstock.model;
 
+
 public abstract class Funcionario {
     protected String nome;
     protected String matricula;
@@ -9,7 +10,7 @@ public abstract class Funcionario {
         this.matricula = matricula;
     }
 
-    public void registrarMaterial(Meterial m, int qtd) {
+    public void registrarMaterial(Material m, int qtd) {
         System.out.println(nome + " registrando o consumo de " + qtd + " unidade de " + m.getNome());
     }
 
@@ -28,6 +29,4 @@ public abstract class Funcionario {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-
-    public abstract void registrarMaterial(Material m, int qtd);
 }

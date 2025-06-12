@@ -8,7 +8,7 @@ public class RegistroDeConsumo {
     private int quantidade;
     private LocalDate data;
 
-    public RegistroDeConsumo(Material material, Unidade unidade, int quantidade, LocalDate data) {
+    public RegistroDeConsumo(Material material, Unidade unidade, int quantidade) {
         this.material = material;
         this.unidade = unidade;
         this.quantidade = quantidade;

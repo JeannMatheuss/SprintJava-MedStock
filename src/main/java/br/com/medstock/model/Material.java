@@ -5,8 +5,9 @@ public class Material {
     private int quantidadeDisponivel;
     private TipoMaterial tipo;
 
-    public Material(String nome, String tipo, int quantidadeDisponivel) {
+    public Material(String nome, TipoMaterial tipo, int quantidadeDisponivel) {
         this.nome = nome;
+        this.tipo = tipo;
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
@@ -26,11 +27,11 @@ public class Material {
         this.nome = nome;
     }
 
-    public String getTipo() {
+    public TipoMaterial getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoMaterial tipo) {
         this.tipo = tipo;
     }
 

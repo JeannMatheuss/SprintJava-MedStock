@@ -1,13 +1,10 @@
 package br.com.medstock.view;
 
-import br.com.medstock.model.Material;
-import br.com.medstock.model.RegistroDeConsumo;
-import br.com.medstock.model.ResponsavelAlmoxarifado;
-import br.com.medstock.model.Unidade;
+import br.com.medstock.model.*;
 
 public class Main {
     public static void main(String[] args) {
-        Material reagente = new Material("Reagente X", "Químico", 100);
+        Material reagente = new Material("Reagente X", TipoMaterial.REAGENTE, 100);
         Unidade unidade1 = new Unidade("Laboratório Central", "Bloco A");
         ResponsavelAlmoxarifado joao = new ResponsavelAlmoxarifado("João", "12345");
 
