@@ -1,7 +1,4 @@
-package br.com.medstock.service;
-
-import br.com.medstock.model.Material;
-import br.com.medstock.model.Unidade;
+package br.com.medstock.model;
 
 import java.time.LocalDate;
 
