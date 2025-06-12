@@ -2,12 +2,11 @@ package br.com.medstock.model;
 
 public class Material {
     private String nome;
-    private String tipo;
     private int quantidadeDisponivel;
+    private TipoMaterial tipo;
 
     public Material(String nome, String tipo, int quantidadeDisponivel) {
         this.nome = nome;
-        this.tipo = tipo;
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
