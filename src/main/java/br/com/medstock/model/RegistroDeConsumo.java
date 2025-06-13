@@ -13,7 +13,7 @@ public class RegistroDeConsumo {
         this.unidade = unidade;
         this.quantidade = quantidade;
         this.data = LocalDate.now();
-        material.consumir(quantidade);
+        //material.consumir(quantidade);
     }
 
     public Material getMaterial() {

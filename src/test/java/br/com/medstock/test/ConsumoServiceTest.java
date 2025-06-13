@@ -45,7 +45,7 @@ public class ConsumoServiceTest {
         try {
             service.registrarConsumo(material, unidade, 150);
         } catch (IllegalArgumentException e) {
-            // ignorar
+            // Ignorar
         }
 
         assertEquals(100, material.getQuantidadeDisponivel());
