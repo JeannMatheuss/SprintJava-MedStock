@@ -1,6 +1,6 @@
 package br.com.medstock.repository;
 
-import br.com.medstock.model.RegistroDeConsumo;
+import br.com.medstock.domain.model.RegistroDeConsumo;
 
 import java.util.ArrayList;
 import java.util.List;

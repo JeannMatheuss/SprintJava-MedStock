@@ -1,7 +1,10 @@
 package br.com.medstock.test;
 
-import br.com.medstock.model.*;
-import br.com.medstock.service.ConsumoService;
+import br.com.medstock.domain.model.Material;
+import br.com.medstock.domain.model.RegistroDeConsumo;
+import br.com.medstock.domain.model.TipoMaterial;
+import br.com.medstock.domain.model.Unidade;
+import br.com.medstock.domain.service.ConsumoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

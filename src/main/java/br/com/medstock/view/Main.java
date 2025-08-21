@@ -1,6 +1,6 @@
 package br.com.medstock.view;
 
-import br.com.medstock.model.*;
+import br.com.medstock.domain.model.*;
 
 public class Main {
     public static void main(String[] args) {

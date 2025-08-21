@@ -1,8 +1,8 @@
-package br.com.medstock.service;
+package br.com.medstock.domain.service;
 
-import br.com.medstock.model.Material;
-import br.com.medstock.model.RegistroDeConsumo;
-import br.com.medstock.model.Unidade;
+import br.com.medstock.domain.model.Material;
+import br.com.medstock.domain.model.RegistroDeConsumo;
+import br.com.medstock.domain.model.Unidade;
 
 public class ConsumoService {
     public RegistroDeConsumo registrarConsumo(Material material, Unidade unidade, int quantidade) {

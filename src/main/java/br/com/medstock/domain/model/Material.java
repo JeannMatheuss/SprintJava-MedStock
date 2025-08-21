@@ -1,4 +1,4 @@
-package br.com.medstock.model;
+package br.com.medstock.domain.model;
 
 public class Material {
     private String nome;
