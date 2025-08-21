@@ -1,11 +1,13 @@
 package br.com.medstock.domain.model;
 
 public class Material {
+    private int id;
     private String nome;
     private int quantidadeDisponivel;
     private TipoMaterial tipo;
 
-    public Material(String nome, TipoMaterial tipo, int quantidadeDisponivel) {
+    public Material(int id, String nome, TipoMaterial tipo, int quantidadeDisponivel) {
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
         this.quantidadeDisponivel = quantidadeDisponivel;
@@ -41,5 +43,13 @@ public class Material {
 
     public void setQuantidadeDisponivel(int quantidadeDisponivel) {
         this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
