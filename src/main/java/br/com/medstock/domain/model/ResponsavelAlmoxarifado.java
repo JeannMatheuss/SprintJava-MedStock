@@ -1,13 +1,17 @@
 package br.com.medstock.domain.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("RESPONSAVEL_ALMOXARIFADO")
 public class ResponsavelAlmoxarifado extends Funcionario {
-    public ResponsavelAlmoxarifado(String nome, String matricula) {
-        super(nome, matricula);
+
+    public ResponsavelAlmoxarifado() {
     }
 
-    @Override
-    public void registrarMaterial(Material m, int qtd) {
-        m.consumir(qtd);
-        System.out.println("Material atualizado no sistema.");
+    public ResponsavelAlmoxarifado(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
     }
 }

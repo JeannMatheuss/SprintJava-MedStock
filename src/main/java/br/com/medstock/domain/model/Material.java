@@ -1,55 +1,68 @@
 package br.com.medstock.domain.model;
 
+import br.com.medstock.domain.exception.EstoqueInsuficienteException;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "materiais")
 public class Material {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false, unique = true)
     private String nome;
+
+    @Column(name = "quantidade_disponivel", nullable = false)
     private int quantidadeDisponivel;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoMaterial tipo;
 
-    public Material(int id, String nome, TipoMaterial tipo, int quantidadeDisponivel) {
-        this.id = id;
+    public Material() {
+    }
+
+    public Material(String nome, TipoMaterial tipo, int quantidadeDisponivel) {
         this.nome = nome;
         this.tipo = tipo;
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
     public void consumir(int quantidade) {
-        if (quantidade <= quantidadeDisponivel) {
-            quantidadeDisponivel -= quantidade;
-        } else{
-            System.out.println("Estoque insufuciente.");
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade a ser consumida deve ser positiva.");
         }
+        if (quantidade > this.quantidadeDisponivel) {
+            throw new EstoqueInsuficienteException(
+                    "Estoque insuficiente para o material '" + nome + "'. Solicitado: " + quantidade + ", Disponível: " + this.quantidadeDisponivel
+            );
+        }
+        this.quantidadeDisponivel -= quantidade;
+    }
+
+    public void adicionarEstoque(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade a ser adicionada deve ser positiva.");
+        }
+        this.quantidadeDisponivel += quantidade;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public TipoMaterial getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoMaterial tipo) {
-        this.tipo = tipo;
-    }
-
     public int getQuantidadeDisponivel() {
         return quantidadeDisponivel;
     }
 
-    public void setQuantidadeDisponivel(int quantidadeDisponivel) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public TipoMaterial getTipo() {
+        return tipo;
     }
 }
