@@ -1,9 +1,6 @@
-package br.com.medstock.application;
+package br.com.medstock.domain.model;
 
 import br.com.medstock.domain.exception.EstoqueException;
-import br.com.medstock.domain.model.Material;
-import br.com.medstock.domain.model.NivelEstoqueStatus;
-import br.com.medstock.domain.model.TipoMaterial;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,5 @@
-package br.com.medstock.application;
+package br.com.medstock.infrastructure.config;
 
-import br.com.medstock.infrastructure.config.JpaUtil;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
