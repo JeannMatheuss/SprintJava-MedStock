@@ -24,14 +24,14 @@ public class Material {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    private String nome;
+    public String nome;
 
     @Column(name = "quantidade_disponivel", nullable = false)
-    private int quantidadeDisponivel;
+    public int quantidadeDisponivel;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoMaterial tipo;
+    public TipoMaterial tipo;
 
     public Material() {
     }
