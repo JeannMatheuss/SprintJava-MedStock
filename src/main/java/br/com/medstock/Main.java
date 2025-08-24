@@ -11,6 +11,10 @@ import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
+        startApp();
+    }
+
+    public static void startApp() {
         try {
             MaterialRepository materialRepository = new JpaMaterialRepository();
             EstoqueService estoqueService = new EstoqueService(materialRepository);
@@ -23,14 +27,18 @@ public class Main {
             Runtime.getRuntime().addShutdownHook(new Thread(JpaUtil::shutdown));
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Falha crítica ao iniciar a aplicação: " + e.getMessage(),
-                    "Erro Fatal",
-                    JOptionPane.ERROR_MESSAGE
-            );
-            e.printStackTrace();
-            System.exit(1);
+            showErrorAndExit(e);
         }
+    }
+
+    static void showErrorAndExit(Exception e) {
+        JOptionPane.showMessageDialog(
+                null,
+                "Falha crítica ao iniciar a aplicação: " + e.getMessage(),
+                "Erro Fatal",
+                JOptionPane.ERROR_MESSAGE
+        );
+        e.printStackTrace();
+        System.exit(1);
     }
 }
