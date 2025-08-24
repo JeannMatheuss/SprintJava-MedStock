@@ -95,6 +95,7 @@ Este comando irá:
 
 O relatório estará disponível no arquivo `target/site/jacoco/index.html`. Abra este arquivo em um navegador para visualizar quais partes do código foram cobertas pelos testes.
 
-## Autor
+## Autores
 
+*   **Jean 💣Mohamed💥**
 *   **Pedro Sampaio**
