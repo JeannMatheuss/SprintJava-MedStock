@@ -1,7 +1,7 @@
 package br.com.medstock;
 
 import br.com.medstock.application.EstoqueService;
-import br.com.medstock.domain.repository.MaterialRepository;
+import br.com.medstock.domain.repository.MaterialDAO;
 import br.com.medstock.infrastructure.config.JpaUtil;
 import br.com.medstock.infrastructure.persistence.JpaMaterialRepository;
 import br.com.medstock.presentation.EstoqueFrame;
@@ -16,8 +16,8 @@ public class Main {
 
     public static void startApp() {
         try {
-            MaterialRepository materialRepository = new JpaMaterialRepository();
-            EstoqueService estoqueService = new EstoqueService(materialRepository);
+            MaterialDAO materialDAO = new JpaMaterialRepository();
+            EstoqueService estoqueService = new EstoqueService(materialDAO);
 
             SwingUtilities.invokeLater(() -> {
                 EstoqueFrame frame = new EstoqueFrame(estoqueService);

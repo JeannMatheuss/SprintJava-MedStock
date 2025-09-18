@@ -2,19 +2,19 @@ package br.com.medstock.application;
 
 import br.com.medstock.domain.exception.RecursoNaoEncontradoException;
 import br.com.medstock.domain.model.Material;
-import br.com.medstock.domain.repository.MaterialRepository;
+import br.com.medstock.domain.repository.MaterialDAO;
 
 public class EstoqueService {
 
     private static final int ASTRAZENECA_ID = 1;
-    private final MaterialRepository materialRepository;
+    private final MaterialDAO materialDAO;
 
-    public EstoqueService(MaterialRepository materialRepository) {
-        this.materialRepository = materialRepository;
+    public EstoqueService(MaterialDAO materialDAO) {
+        this.materialDAO = materialDAO;
     }
 
     private Material getMaterial() {
-        return materialRepository.findById(ASTRAZENECA_ID)
+        return materialDAO.findById(ASTRAZENECA_ID)
                 .orElseThrow(() -> new RecursoNaoEncontradoException(
                         "Material 'AstraZeneca' com ID " + ASTRAZENECA_ID + " não foi encontrado no banco de dados."
                 ));
@@ -27,12 +27,12 @@ public class EstoqueService {
     public Material adicionarEstoque() {
         Material material = getMaterial();
         material.adicionarEstoque();
-        return materialRepository.save(material);
+        return materialDAO.save(material);
     }
 
     public Material removerEstoque() {
         Material material = getMaterial();
         material.removerEstoque();
-        return materialRepository.save(material);
+        return materialDAO.save(material);
     }
 }

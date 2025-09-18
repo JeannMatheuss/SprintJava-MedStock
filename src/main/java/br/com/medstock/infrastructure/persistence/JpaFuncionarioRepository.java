@@ -1,7 +1,7 @@
 package br.com.medstock.infrastructure.persistence;
 
 import br.com.medstock.domain.model.Funcionario;
-import br.com.medstock.domain.repository.FuncionarioRepository;
+import br.com.medstock.domain.repository.FuncionarioDAO;
 import br.com.medstock.infrastructure.config.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaFuncionarioRepository implements FuncionarioRepository {
+public class JpaFuncionarioRepository implements FuncionarioDAO {
 
     @Override
     public Funcionario save(Funcionario funcionario) {

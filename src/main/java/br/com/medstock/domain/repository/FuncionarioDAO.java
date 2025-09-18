@@ -5,7 +5,7 @@ import br.com.medstock.domain.model.Funcionario;
 import java.util.List;
 import java.util.Optional;
 
-public interface FuncionarioRepository {
+public interface FuncionarioDAO {
 
     Funcionario save(Funcionario funcionario);
 

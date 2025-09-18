@@ -1,7 +1,7 @@
 package br.com.medstock.infrastructure.persistence;
 
 import br.com.medstock.domain.model.Material;
-import br.com.medstock.domain.repository.MaterialRepository;
+import br.com.medstock.domain.repository.MaterialDAO;
 import br.com.medstock.infrastructure.config.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaMaterialRepository implements MaterialRepository {
+public class JpaMaterialRepository implements MaterialDAO {
 
     @Override
     public Material save(Material material) {

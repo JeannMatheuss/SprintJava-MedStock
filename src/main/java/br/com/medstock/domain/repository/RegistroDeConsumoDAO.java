@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface RegistroDeConsumoRepository {
+public interface RegistroDeConsumoDAO {
 
     RegistroDeConsumo save(RegistroDeConsumo registro);
 

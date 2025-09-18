@@ -3,7 +3,7 @@ package br.com.medstock.application;
 import br.com.medstock.domain.exception.EstoqueException;
 import br.com.medstock.domain.model.Material;
 import br.com.medstock.domain.model.TipoMaterial;
-import br.com.medstock.domain.repository.MaterialRepository;
+import br.com.medstock.domain.repository.MaterialDAO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 class EstoqueServiceTest {
 
     @Mock
-    private MaterialRepository materialRepository;
+    private MaterialDAO materialDAO;
 
     @InjectMocks
     private EstoqueService estoqueService;
@@ -35,54 +35,54 @@ class EstoqueServiceTest {
     @DisplayName("Deve adicionar estoque com sucesso quando não estiver no máximo")
     void deveAdicionarEstoqueComSucesso() throws Exception {
         Material astraZeneca = criarMaterial(30);
-        when(materialRepository.findById(1)).thenReturn(Optional.of(astraZeneca));
-        when(materialRepository.save(any(Material.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(materialDAO.findById(1)).thenReturn(Optional.of(astraZeneca));
+        when(materialDAO.save(any(Material.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Material materialAtualizado = estoqueService.adicionarEstoque();
 
         assertEquals(40, materialAtualizado.getQuantidadeDisponivel());
-        verify(materialRepository, times(1)).findById(1);
-        verify(materialRepository, times(1)).save(astraZeneca);
+        verify(materialDAO, times(1)).findById(1);
+        verify(materialDAO, times(1)).save(astraZeneca);
     }
 
     @Test
     @DisplayName("Deve lançar exceção ao tentar adicionar estoque quando já está no máximo")
     void deveLancarExcecaoAoAdicionarNoEstoqueMaximo() throws Exception {
         Material astraZeneca = criarMaterial(50);
-        when(materialRepository.findById(1)).thenReturn(Optional.of(astraZeneca));
+        when(materialDAO.findById(1)).thenReturn(Optional.of(astraZeneca));
 
         EstoqueException exception = assertThrows(EstoqueException.class, () -> {
             estoqueService.adicionarEstoque();
         });
 
         assertEquals("Estoque máximo de 50 unidades já foi atingido.", exception.getMessage());
-        verify(materialRepository, never()).save(any(Material.class));
+        verify(materialDAO, never()).save(any(Material.class));
     }
 
     @Test
     @DisplayName("Deve remover estoque com sucesso quando não estiver no mínimo")
     void deveRemoverEstoqueComSucesso() throws Exception {
         Material astraZeneca = criarMaterial(20);
-        when(materialRepository.findById(1)).thenReturn(Optional.of(astraZeneca));
-        when(materialRepository.save(any(Material.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(materialDAO.findById(1)).thenReturn(Optional.of(astraZeneca));
+        when(materialDAO.save(any(Material.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Material materialAtualizado = estoqueService.removerEstoque();
 
         assertEquals(10, materialAtualizado.getQuantidadeDisponivel());
-        verify(materialRepository, times(1)).save(astraZeneca);
+        verify(materialDAO, times(1)).save(astraZeneca);
     }
 
     @Test
     @DisplayName("Deve lançar exceção ao tentar remover estoque quando já está no mínimo")
     void deveLancarExcecaoAoRemoverDoEstoqueMinimo() throws Exception {
         Material astraZeneca = criarMaterial(0);
-        when(materialRepository.findById(1)).thenReturn(Optional.of(astraZeneca));
+        when(materialDAO.findById(1)).thenReturn(Optional.of(astraZeneca));
 
         assertThrows(EstoqueException.class, () -> {
             estoqueService.removerEstoque();
         });
 
-        verify(materialRepository, never()).save(any(Material.class));
+        verify(materialDAO, never()).save(any(Material.class));
     }
 
     private Material criarMaterial(int quantidade) throws Exception {

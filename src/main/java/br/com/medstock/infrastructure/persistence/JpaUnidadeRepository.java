@@ -1,7 +1,7 @@
 package br.com.medstock.infrastructure.persistence;
 
 import br.com.medstock.domain.model.Unidade;
-import br.com.medstock.domain.repository.UnidadeRepository;
+import br.com.medstock.domain.repository.UnidadeDAO;
 import br.com.medstock.infrastructure.config.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaUnidadeRepository implements UnidadeRepository {
+public class JpaUnidadeRepository implements UnidadeDAO {
 
     @Override
     public Unidade save(Unidade unidade) {

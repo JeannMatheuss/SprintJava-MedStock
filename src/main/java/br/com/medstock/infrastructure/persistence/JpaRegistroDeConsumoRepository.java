@@ -1,7 +1,7 @@
 package br.com.medstock.infrastructure.persistence;
 
 import br.com.medstock.domain.model.RegistroDeConsumo;
-import br.com.medstock.domain.repository.RegistroDeConsumoRepository;
+import br.com.medstock.domain.repository.RegistroDeConsumoDAO;
 import br.com.medstock.infrastructure.config.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaRegistroDeConsumoRepository implements RegistroDeConsumoRepository {
+public class JpaRegistroDeConsumoRepository implements RegistroDeConsumoDAO {
 
     @Override
     public RegistroDeConsumo save(RegistroDeConsumo registro) {
