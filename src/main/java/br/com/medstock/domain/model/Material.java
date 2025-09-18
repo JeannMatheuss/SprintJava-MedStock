@@ -2,7 +2,6 @@ package br.com.medstock.domain.model;
 
 
 import br.com.medstock.domain.exception.EstoqueException;
-import br.com.medstock.domain.exception.EstoqueInsuficienteException;
 
 
 import javax.persistence.Column;
@@ -41,6 +40,8 @@ public class Material {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     public TipoMaterial tipo;
+    private int quantidadeAtual;
+    private String status;
 
 
     public Material() {
@@ -60,6 +61,27 @@ public class Material {
         }
         this.quantidadeDisponivel = Math.min(this.quantidadeDisponivel + INCREMENTO_DECREMENTO, ESTOQUE_MAXIMO);
     }
+    
+    public void removerEstoque(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("A quantidade a remover deve ser maior que zero.");
+        }
+        if (this.quantidadeAtual < quantidade) {
+            throw new IllegalStateException("Estoque insuficiente. Atual: " + this.quantidadeAtual);
+        }
+        this.quantidadeAtual -= quantidade;
+    }
 
 
+    public int getQuantidadeDisponivel() {
+        return quantidadeAtual;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

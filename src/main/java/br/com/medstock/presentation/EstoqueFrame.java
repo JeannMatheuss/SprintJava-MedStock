@@ -132,7 +132,7 @@ public class EstoqueFrame extends JFrame {
 
     private void atualizarTela(Material material) {
         quantidadeLabel.setText("Quantidade: " + material.getQuantidadeDisponivel());
-        NivelEstoqueStatus status = material.getStatus();
+        NivelEstoqueStatus status = NivelEstoqueStatus.valueOf(material.getStatus());
         statusLabel.setText("Status: " + status.getTexto());
         statusLabel.setBackground(status.getCor());
     }

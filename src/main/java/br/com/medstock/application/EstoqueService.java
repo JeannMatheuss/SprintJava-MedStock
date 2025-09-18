@@ -32,7 +32,7 @@ public class EstoqueService {
 
     public Material removerEstoque() {
         Material material = getMaterial();
-        material.removerEstoque();
+        material.removerEstoque(2);
         return materialDAO.save(material);
     }
 }
