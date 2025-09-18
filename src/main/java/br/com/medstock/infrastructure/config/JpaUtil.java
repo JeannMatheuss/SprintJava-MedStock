@@ -25,19 +25,26 @@ public final class JpaUtil {
                 Map<String, String> properties = new HashMap<>();
 
                 String dbHost = envProvider.apply("DB_HOST");
+                String dbPort = envProvider.apply("DB_PORT");
                 String dbName = envProvider.apply("DB_NAME");
                 String dbUser = envProvider.apply("DB_USER");
                 String dbPassword = envProvider.apply("DB_PASSWORD");
 
                 if (dbHost == null || dbName == null || dbUser == null || dbPassword == null) {
-                    throw new IllegalStateException("As variáveis de ambiente DB_HOST, DB_NAME, DB_USER e DB_PASSWORD devem ser configuradas.");
+                    throw new IllegalStateException("As variáveis DB_HOST, DB_NAME, DB_USER e DB_PASSWORD devem estar configuradas.");
                 }
 
-                String jdbcUrl = String.format("jdbc:oracle:thin:@%s:1521:%s", dbHost, dbName);
+                if (dbPort == null) {
+                    dbPort = "1521";
+                }
+
+                // Monta a URL com Service Name (mais comum na FIAP)
+                String jdbcUrl = String.format("jdbc:oracle:thin:@//%s:%s/%s", dbHost, dbPort, dbName);
 
                 properties.put("javax.persistence.jdbc.url", jdbcUrl);
                 properties.put("javax.persistence.jdbc.user", dbUser);
                 properties.put("javax.persistence.jdbc.password", dbPassword);
+                properties.put("javax.persistence.jdbc.driver", "oracle.jdbc.OracleDriver");
 
                 FACTORY = Persistence.createEntityManagerFactory("medstock-pu", properties);
             } catch (Exception e) {
