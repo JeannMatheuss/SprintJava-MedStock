@@ -23,9 +23,7 @@ public class JpaUnidadeRepository implements UnidadeDAO {
             tx.commit();
             return saved;
         } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx.isActive()) tx.rollback();
             throw new RuntimeException("Falha ao salvar unidade", e);
         } finally {
             em.close();
@@ -49,9 +47,11 @@ public class JpaUnidadeRepository implements UnidadeDAO {
             TypedQuery<Unidade> query = em.createQuery(
                     "SELECT u FROM Unidade u WHERE u.nome = :nome", Unidade.class);
             query.setParameter("nome", nome);
-            return Optional.of(query.getSingleResult());
-        } catch (NoResultException e) {
-            return Optional.empty();
+            try{
+                return Optional.of(query.getSingleResult());
+            } catch (NoResultException e) {
+                return Optional.empty();
+            }
         } finally {
             em.close();
         }
@@ -74,15 +74,11 @@ public class JpaUnidadeRepository implements UnidadeDAO {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            Unidade unidade = em.find(Unidade.class, id);
-            if (unidade != null) {
-                em.remove(unidade);
-            }
+            Unidade u = em.find(Unidade.class, id);
+            if (u != null) em.remove(u);
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx.isActive()) tx.rollback();
             throw new RuntimeException("Falha ao deletar unidade", e);
         } finally {
             em.close();
