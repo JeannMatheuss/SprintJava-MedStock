@@ -23,9 +23,7 @@ public class JpaRegistroDeConsumoRepository implements RegistroDeConsumoDAO {
             tx.commit();
             return saved;
         } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx.isActive()) tx.rollback();
             throw new RuntimeException("Falha ao salvar registro de consumo", e);
         } finally {
             em.close();
@@ -74,14 +72,10 @@ public class JpaRegistroDeConsumoRepository implements RegistroDeConsumoDAO {
         try {
             tx.begin();
             RegistroDeConsumo registro = em.find(RegistroDeConsumo.class, id);
-            if (registro != null) {
-                em.remove(registro);
-            }
+            if (registro != null) em.remove(registro);
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
+            if (tx.isActive()) tx.rollback();
             throw new RuntimeException("Falha ao deletar registro de consumo", e);
         } finally {
             em.close();
